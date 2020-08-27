@@ -1,2 +1,2 @@
 all:
-	docker build -t centos-vnc .
+	docker build -f Dockerfile.centos.xfce.vnc -t centos-vnc .
