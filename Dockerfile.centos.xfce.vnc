@@ -59,6 +59,19 @@ RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
+# refer settings -> panel -> icons
+# replace with start-here.png
+ADD ./src/start-here.tgz /usr/share/icons
+#RUN tar -C /usr/share/icons -xzf /start-here.tgz
+RUN rm -f /usr/share/icons/hicolor/16x16/apps/xfce4-panel-menu.png
+
+# add autostart firefox
+ADD ./src/firefox.desktop $HOME/.config/autostart/firefox.desktop
+
+# add offline kylinsec html
+#ADD ./src/kylinsec.tar.gz $HOME
+ADD ./src/kylin-home.tgz /usr/share/doc/HTML
+
 USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
